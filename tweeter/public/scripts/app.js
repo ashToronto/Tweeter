@@ -5,6 +5,7 @@
  */
 $(document).ready(function(){
 
+// Create Header
 function createHeader(data) {
     var $title = $('<header>').addClass('tweet_head');
     var $handler = $('<p>').addClass('handle').text(data.user.handle);
@@ -16,6 +17,7 @@ function createHeader(data) {
     return $title;
  };
 
+// Create Footer
  function createFooter(data){
   var $foot = $('<footer>').addClass('tweet_lower');
   $lastTweetTime = $('<p>').addClass('tweet-time').text(data.created_at);
@@ -31,6 +33,7 @@ function createHeader(data) {
   return $foot;
  }
 
+// Join Header + Footer => Append to Article
  function createTweetElement(data){
   var $dublicate = $('<article>').addClass('tweet');
   let $section = $('<section>').addClass('new_message');
@@ -42,55 +45,44 @@ function createHeader(data) {
   return $dublicate;
  }
 
- // function createAndAppendTweet(tweetData) {
- //   let $tweetHtml = createTweetElement(tweet);
- //   $('.container').append($tweetHtml);
- // }
 
+// Loop through Objects
 function renderTweets(tweets){
   for (tweet of tweets){
    let $tweetHtml = createTweetElement(tweet);
    $('.container').append($tweetHtml);
   }
-
-  // for (let i = 0; i < tweets.length; i += 2) {
-  //   createTweetElement(tweets[i]);
-  // }
-
-  // tweets.forEach(function (tweet) {
-  //   let $tweetHtml = createTweetElement(tweet);
-  //   $('.container').append($tweetHtml);
-  // });
-
-  // tweets.forEach(createAndAppendTweet);
 }
 
-renderTweets(data);
+    // Prevent Form from re-directing and AJAX POST
+    $( ".sendTweet" ).on('submit', function( event ) {
+    var $sendTweet = $(this)
+    event.preventDefault();
+    var $tweetMessage = $('textarea').val();
+    if ($tweetMessage.length > 0 && $tweetMessage.length < 140){
+      var serializedMessage = $(this).serialize();
+      // console.log(serializedMessage);
+      $.post("/tweets", serializedMessage, function(){
+        console.log(serializedMessage)
+      });
+    }
+    renderTweets(data);
+  });
 
-// Appends main page
-  // var $tweet = createTweetElement(tweetData);
-  // // Test / driver code (temporary)
-  // console.log($tweet); // to see what it looks like
-  // console.log($tweet.html());
-  // $('.container').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
-});
 
-// STATIC TWEET DATA
-//  const tweetData = {
-//   "user": {
-//     "name": "Newton",
-//     "avatars": {
-//       "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-//       "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-//       "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-//     },
-//     "handle": "@SirIsaac"
-//   },
-//   "content": {
-//     "text": "If I have seen further it is by standing on the shoulders of giants"
-//   },
-//   "created_at": 1461116232227
-// }
+    //AJAX GET REQUEST
+ function loadTweets() {
+     $.ajax({
+         url: '/tweets',
+         method: 'GET',
+         success: function(data) {
+             renderTweets(data);
+         }
+     });
+ };
+
+ });
+
 
 const data = [
   {
