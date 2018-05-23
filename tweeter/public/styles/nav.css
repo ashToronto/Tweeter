@@ -1,0 +1,21 @@
+#nav-bar{
+  height: 80px;
+  margin-left: 2em;
+  margin-right: 2em;
+  font-color: #e8fdff;
+  background-color: #00a087;
+  border: 1px solid #4CAF50;
+}
+
+#nav-bar .logo {
+ width: 80px;
+ height: 80px;
+}
+
+#nav-bar .header{
+  font-size: 50px;
+  line-height: 5px;
+  text-align: center;
+  position: relative;
+  bottom: 35%;
+}

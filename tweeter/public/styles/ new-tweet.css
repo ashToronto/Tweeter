@@ -1,0 +1,76 @@
+h2{
+  text-decoration: underline;
+  margin-left: 10%;
+}
+
+textarea {
+  width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;
+    text-align: left;
+}
+
+.new-tweet{
+  margin-bottom: 20px;
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+  background-color: lightblue;
+  border-style: groove;
+}
+
+input {
+  margin: 10px;
+}
+
+.counter{
+  float: right;
+  margin: 10px;
+}
+
+.handle{
+  float:right;
+}
+
+.new_message{
+  padding: 10px;
+  background-color: white;
+  border-style: groove;
+  border-radius: 10px;
+}
+
+.tweet_head{
+  border-style: ridge;
+  background-color: lightgrey;
+  height: 50px;
+}
+
+.picture{
+  float: left;
+  border-radius: 3px;
+}
+
+.username{
+  margin:3px;
+  padding: 10px;
+}
+
+.new_message footer {
+  height: 25px;
+}
+
+.tweet-time {
+  float: left;
+  margin: 0;
+}
+
+.tweet_options{
+  float: right;
+  opacity: .5;
+}
+
+.tweet_options:hover{
+  opacity: 1;
+}
+
+
