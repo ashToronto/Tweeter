@@ -62,6 +62,7 @@ $(document).ready(function() {
       });
     });
 
+    //Hide TextField on initial load
     $(window).load(function(){
       $('.new-tweet').hide();
     });
