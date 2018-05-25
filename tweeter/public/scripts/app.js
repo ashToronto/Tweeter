@@ -5,6 +5,35 @@
  */
 $(document).ready(function() {
 
+// Time since last Tweet //When server starts it sets a new time stamp// New time stamp
+function timeStamp(date){
+    var TS = new Date();
+    var secondsDiff = Math.floor((TS - date)/1000); // seconds time difference
+    var numMonths = Math.floor(numDays / 30);
+    var numYears = Math.floor(secondsDiff / 31536000)
+    if (numYears > 1){
+        return numYears + " years old"
+    }
+    var numDays = Math.floor(secondsDiff / 86400);
+    if (numDays > 1){
+        return numDays + " days old"
+    }
+    var numHours = Math.floor(secondsDiff / 3600);
+    if (numHours > 1 ){
+        return numHours + " hours ago"
+    }
+    var numMinutes = Math.floor(((secondsDiff % 86400) % 3600) / 60);
+    if (numMinutes > 3){
+        return numMinutes + " minutes ago"
+    } else {
+        return 'Now'
+    }
+
+
+    // return timeDifference + 'seconds';
+}
+
+
     // Create Header
     function createHeader(data) {
         var $title = $('<header>').addClass('tweet_head');
@@ -20,7 +49,7 @@ $(document).ready(function() {
     // Create Footer
     function createFooter(data) {
         var $foot = $('<footer>').addClass('tweet_lower');
-        $lastTweetTime = $('<p>').addClass('tweet-time').text(data.created_at);
+        $lastTweetTime = $('<time>').text(timeStamp(data.created_at));
         $foot.append($lastTweetTime);
         let $hoverIcons = $('<span>').addClass('tweet_options');
         $foot.append($hoverIcons);
@@ -33,7 +62,7 @@ $(document).ready(function() {
         return $foot;
     }
 
-    // Join Header + Footer => Append to Article
+    // Join Header + Footer => Generate New Tweet
     function createTweetElement(data) {
         var $dublicate = $('<article>').addClass('tweet');
         let $section = $('<section>').addClass('new_message');
@@ -52,7 +81,7 @@ $(document).ready(function() {
       });
     });
 
-    //Set Cursor automatically on textarea
+    //Set Cursor automatically on Textarea
     $(".textField").focus();
     $(".textField").select();
     $(document).ready(function(){
