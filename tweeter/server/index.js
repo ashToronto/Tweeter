@@ -12,6 +12,13 @@ app.use(express.static("public"));
 // EJS ENGINE ADDED
 app.set("view engine", "ejs")
 
+//Set Cookie-session
+const cookieSession = require("cookie-session")
+app.use(cookieSession({
+ name: 'session',
+ keys: ['hothot'],
+}))
+
 // The in-memory database of tweets. It's a basic object with an array in it.
 const MongoClient = require("mongodb").MongoClient;
 const MONGODB_URI = "mongodb://localhost:27017/tweeter";
@@ -46,17 +53,19 @@ app.get("/register", (req, res) => {
 //Post Registration
 app.post("/register", (req, res) => {
  var newUser = {
-  email: req.body.email,
-  password: req.body.password
+  email: req.session["email"],
+  password: req.session["password"]
  };
+ // SET THE COOKIE HERE KEY VALUE PAIR,
+ req.session["newUser"] = newUser
  db.collection("users").insertOne(newUser);
 });
 
 // Get request Login Feature Page
 app.get("/login", (req, res) => {
   var newUser = {
-  email: req.body.email,
-  password: req.body.password
+  email: req.session["email"],
+  password: req.session["password"]
  };
   res.render("login");
 });
