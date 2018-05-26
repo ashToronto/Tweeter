@@ -9,6 +9,8 @@ const app           = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+// EJS ENGINE ADDED
+app.set("view engine", "ejs")
 
 // The in-memory database of tweets. It's a basic object with an array in it.
 const MongoClient = require("mongodb").MongoClient;
@@ -36,7 +38,52 @@ const tweetsRoutes = require("./routes/tweets")(DataHelpers);
 // Mount the tweets routes at the "/tweets" path prefix:
 app.use("/tweets", tweetsRoutes);
 
+// Registration Feature Get Page
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
+//Post Registration
+app.post("/register", (req, res) => {
+ var newUser = {
+  email: req.body.email,
+  password: req.body.password
+ };
+ db.collection("users").insertOne(newUser);
+});
+
+// Get request Login Feature Page
+app.get("/login", (req, res) => {
+  var newUser = {
+  email: req.body.email,
+  password: req.body.password
+ };
+  res.render("login");
+});
+
+//Login Feature with mongo authenticate
+app.post("/login", (req, res) => {
+   var newUser = {
+    email: req.body.email,
+    password: req.body.password
+   };
+    var search = db.collection("users").findOne({'email': newUser.email}, {'password': newUser.password})
+    .then(function(doc) {
+      console.log(doc)
+      if (doc !== null){
+        return res.redirect("http://localhost:8080/")
+      } else {
+        return res.status(401).send("Error! Incorrect Login")
+      }
+    });
+});
+
+// Activate
 app.listen(PORT, () => {
-  console.log("Example app listening on port " + PORT);
+  console.log("Tweeter app listening on port " + PORT);
 });
 });
+
+// Test with: mongo >> show dbs >> use 'tweeter' >> db.users >> db.users.find()
+// where 'users' = [bject]
+// where tweeter = 'dbs files on local'

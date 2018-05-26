@@ -5,33 +5,31 @@
  */
 $(document).ready(function() {
 
-// Time since last Tweet //When server starts it sets a new time stamp// New time stamp
-function timeStamp(date){
-    var TS = new Date();
-    var secondsDiff = Math.floor((TS - date)/1000); // seconds time difference
-    var numMonths = Math.floor(numDays / 30);
-    var numYears = Math.floor(secondsDiff / 31536000)
-    if (numYears > 1){
-        return numYears + " years old"
+    // Time since last Tweet
+    //When server starts it sets a new time stamp
+    function timeStamp(date) {
+        var TS = new Date();
+        var secondsDiff = Math.floor((TS - date) / 1000); // seconds time difference
+        var numMonths = Math.floor(numDays / 30);
+        var numYears = Math.floor(secondsDiff / 31536000)
+        if (numYears > 1) {
+            return numYears + " years old"
+        }
+        var numDays = Math.floor(secondsDiff / 86400);
+        if (numDays > 1) {
+            return numDays + " days old"
+        }
+        var numHours = Math.floor(secondsDiff / 3600);
+        if (numHours > 1) {
+            return numHours + " hours ago"
+        }
+        var numMinutes = Math.floor(((secondsDiff % 86400) % 3600) / 60);
+        if (numMinutes > 3) {
+            return numMinutes + " minutes ago"
+        } else {
+            return 'Now'
+        }
     }
-    var numDays = Math.floor(secondsDiff / 86400);
-    if (numDays > 1){
-        return numDays + " days old"
-    }
-    var numHours = Math.floor(secondsDiff / 3600);
-    if (numHours > 1 ){
-        return numHours + " hours ago"
-    }
-    var numMinutes = Math.floor(((secondsDiff % 86400) % 3600) / 60);
-    if (numMinutes > 3){
-        return numMinutes + " minutes ago"
-    } else {
-        return 'Now'
-    }
-
-
-    // return timeDifference + 'seconds';
-}
 
 
     // Create Header
@@ -75,30 +73,30 @@ function timeStamp(date){
     }
 
     // Compose Button Hide and Show
-    $(document).ready(function(){
-          $(".composeTweet").click(function(){
-          $(".new-tweet").toggle(500);
-      });
+    $(document).ready(function() {
+        $(".composeTweet").click(function() {
+            $(".new-tweet").toggle(500);
+        });
     });
 
     //Set Cursor automatically on Textarea
     $(".textField").focus();
     $(".textField").select();
-    $(document).ready(function(){
-         $(".composeTweet").click(function(){
-         $(".textField").focus();
-         $(".textField").select();
-      });
+    $(document).ready(function() {
+        $(".composeTweet").click(function() {
+            $(".textField").focus();
+            $(".textField").select();
+        });
     });
 
     //Hide TextField on initial load
-    $(window).load(function(){
-      $('.new-tweet').hide();
+    $(window).load(function() {
+        $('.new-tweet').hide();
     });
 
     // Loop through Objects and show them
     function renderTweets(tweets) {
-      $('.base').empty();
+        $('.base').empty();
         for (tweet of tweets) {
             let $tweetHtml = createTweetElement(tweet);
             $('.base').append($tweetHtml);
@@ -111,8 +109,8 @@ function timeStamp(date){
             url: '/tweets',
             method: 'GET',
             success: function(tweets) {
-              tweets.reverse();
-              renderTweets(tweets);
+                tweets.reverse();
+                renderTweets(tweets);
             }
         });
     };
