@@ -26,6 +26,3 @@ module.exports = function makeDataHelpers(db) {
   db.close();
 }
 
-// Test with: mongo >> show dbs >> use 'tweeter' >> db.users >> db.users.find()
-// where 'users' = [bject]
-// where tweeter = 'dbs files on local'

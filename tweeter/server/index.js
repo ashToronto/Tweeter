@@ -76,6 +76,7 @@ app.post("/login", (req, res) => {
     email: req.body.email,
     password: req.body.password
    };
+
     var search = db.collection("users").findOne({'email': newUser.email}, {'password': newUser.password})
     .then(function(doc) {
       console.log(doc)
@@ -85,6 +86,12 @@ app.post("/login", (req, res) => {
         return res.status(401).send("Error! Incorrect Login")
       }
     });
+});
+
+// Logout and clear cookies
+app.post("/logout", (req, res) => {
+ req.session = null
+ res.redirect("/login");
 });
 
 // Activate
