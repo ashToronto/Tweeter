@@ -16,7 +16,6 @@ This repository is the starter code for the project: Students will fork and clon
 - Express
 - Node 5.10.x or above
 
-
 ##Technologies Used
 
 - Node.js
@@ -25,6 +24,9 @@ This repository is the starter code for the project: Students will fork and clon
 - JQuerry
 - Ajax
 - MongoDb
+
+##Final Product
+!["Tweeter: Single page tweet app"]([Tweeter/tweeter/docs/Tweeter.png])
 
 
 
