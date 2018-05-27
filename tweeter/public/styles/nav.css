@@ -35,3 +35,50 @@
 .composeTweet:hover{
   background-color: azure;
 }
+
+.login {
+  float: right;
+  border-style: groove;
+  border-radius: 10px;
+  width: 180px;
+  height: 58px;
+  margin: 10px;
+ background-color: white;
+ text-align: center;
+ vertical-align: middle;
+}
+
+.login:hover{
+  background-color: azure;
+}
+
+.logout {
+  float: right;
+  border-style: groove;
+  border-radius: 10px;
+  width: 180px;
+  height: 58px;
+  margin: 10px;
+ background-color: white;
+ text-align: center;
+ vertical-align: middle;
+}
+.logout:hover{
+  background-color: azure;
+}
+
+.register {
+  float: right;
+  border-style: groove;
+  border-radius: 10px;
+  width: 180px;
+  height: 58px;
+  margin: 10px;
+ background-color: white;
+ text-align: center;
+ vertical-align: middle;
+}
+
+.register:hover{
+  background-color: azure;
+}

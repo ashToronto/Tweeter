@@ -30,27 +30,33 @@ input {
 
 .handle{
   float:right;
+  font-size: 13px;
+  margin-right:5px;
 }
 
 .new_message{
-  padding: 10px;
   background-color: white;
   border-style: groove;
-  border-radius: 10px;
+  border-radius: 5px;
+  margin:10px;
+  border-width: thin;
 }
 
 .tweet_head{
-  border-style: ridge;
+  border-radius: 2px;
   background-color: lightgrey;
-  height: 50px;
+  height: 60px;
 }
 
 .picture{
   float: left;
-  border-radius: 3px;
+  margin-left:3px;
+  margin-top: 4px;
+  border-radius: 10px;
 }
 
 .username{
+  float: left;
   margin:3px;
   padding: 10px;
 }
@@ -59,23 +65,30 @@ input {
   height: 25px;
 }
 
-.tweet-time {
-  float: left;
-  margin: 0;
+.tweet_lower {
+  margin: 10px;
+  font-size: 12px;
 }
 
 .tweet_options{
   float: right;
-  opacity: .5;
+  opacity: 0;
 }
 
-.tweet_options:hover{
+.base :hover.tweet_options{
   opacity: 1;
 }
 
-.base{
+article:hover .tweet_options{
+  opacity: 1;
+}
 
-};
+.base :hover {
+  border-color: black;
+  border-style: bold;
+  border-width: medium;
+}
 
-
-
+.content {
+  margin:10px;
+}

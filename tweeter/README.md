@@ -15,3 +15,24 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Express
 - Node 5.10.x or above
+
+
+##Technologies Used
+
+- Node.js
+- HTML
+- CSS
+- JQuerry
+- Ajax
+- MongoDb
+
+
+
+
+
+
+
+
+
+
+
