@@ -25,7 +25,7 @@ This repository is the starter code for the project: Students will fork and clon
 - Ajax
 - MongoDb
 
-##Final Product
+## Final Product
 !["Tweeter: Single page tweet app"](https://github.com/ashToronto/Tweeter/blob/master/tweeter/docs/Tweeter.png?raw=true)
 
 
